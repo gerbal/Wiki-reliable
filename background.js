@@ -1,3 +1,7 @@
+function getjson(title){
+
+}
+
 function parseDocument(document){
 	return calculateScore(featured, length, edits, sources,authors,links,recency);
 }
@@ -32,7 +36,7 @@ function putbox(document, score, color){
 	var newrow = document.createElement('tr');
 	var th = document.createElement('th');
 	newrow.className= color;
-	table.className = "infobox vcard";
+	table.className = "infobox vcard " + color;
 	table.style.width = "22em";
 	th.colspan = "2";
 	th.className = "n " + color;
@@ -47,12 +51,12 @@ function putbox(document, score, color){
 function runscript(tabId, changeInfo, tab) {
   // No tabs or host permissions needed!
   if (changeInfo.status == 'complete') {
-  	chrome.tabs.insertCSS(tab.id, {
-            file: "css/styles.css"
-        });
     chrome.tabs.executeScript({
     code: 'putbox(document, 10, "warning")'
   });
+    chrome.tabs.insertCSS(tab.id, {
+            file: "css/styles.css"
+        });
   };
   
 };
