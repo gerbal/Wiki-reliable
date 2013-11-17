@@ -12,11 +12,12 @@
     "https://secure.flickr.com/",
     "activeTab",
     "http://*.wikipedia.org/*",
+    "https://*.wikipedia.org/*",
     "tabs"
   ],
   "content_scripts": [
     {
-      "matches": ["http://*.wikipedia.org/*"],
+      "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
       "js": ["background.js"],
       "css" : ["newstyle.css"]
     }
