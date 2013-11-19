@@ -20,13 +20,13 @@ function calculateScore(featured,length,edits,sources,authors,links,recency){
 
 function decorateBoxScore(score){
 	if(score>=10){
-		return "good";
+		return "green";
 	}
 	if(score<10&&score>=5){
-		return "warning";
+		return "orange";
 	}
 	else{
-		return "danger";
+		return "red";
 	}
 }
 
@@ -36,7 +36,7 @@ function putbox(document, score, color){
 	var newrow = document.createElement('tr');
 	var th = document.createElement('th');
 	newrow.className= color;
-	table.className = "infobox vcard " + color;
+	table.className = color +" infobox vcard " ;
 	table.style.width = "22em";
 	th.colspan = "2";
 	th.className = "n " + color;
@@ -50,15 +50,17 @@ function putbox(document, score, color){
 
 function runscript(tabId, changeInfo, tab) {
   // No tabs or host permissions needed!
+  chrome.tabs.insertCSS(tabId, {
+            file: chrome.extension.getURL( "css/styles.css")
+        });
   if (changeInfo.status == 'complete') {
     chrome.tabs.executeScript({
-    code: 'putbox(document, 10, "warning")'
+    code: 'putbox(document, 10, "red")'
   });
-    chrome.tabs.insertCSS(tab.id, {
-            file: "css/styles.css"
-        });
+    
   };
   
 };
+
 
 chrome.tabs.onUpdated.addListener(runscript);

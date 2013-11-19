@@ -19,7 +19,7 @@
     {
       "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
       "js": ["background.js"],
-      "css" : ["newstyle.css"]
+      "css" : ["css/styles.css"]
     }
   ],
     "background": {
