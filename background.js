@@ -3,7 +3,7 @@ chrome.runtime.onMessage.addListener(
     console.log(sender.tab ?
                 "from a content script:" + sender.tab.url :
                 "from the extension");
-    console.log(request.greeting);
+    console.log(request.uri);
     // if (request.greeting == "hello")
     //   sendResponse({farewell: "goodbye"});
     var tables = generateScoreBox.getStatsPage_(request.uri);
@@ -13,15 +13,19 @@ chrome.runtime.onMessage.addListener(
 var generateScoreBox = {
 	getStatsPage_: function(statsuri){
 		var req = new XMLHttpRequest();
-	    req.open("GET", statsuri, true);
-	    req.onload = this.extractStats_.bind(this);
-	    req.send(null);
+		req.open('GET', statsuri);
+		req.send();
+	    req.onreadystatechange = function() {
+  			if ((this.readyState == 4) && (this.status == 200)) {
+  				var div = this.responseXML.getElementsById('generalstats');
+			var tables = div.getElementsByType('table');
+			return tables[0];
+  			}
+		}
 	},
 
 
 	extractStats_: function(e){
-		var div = e.target.responseXML.querySelectorAll('generalstats');
-		var tables = div.getElementsByType('table');
-		return tables[0];
+		
 	}
 }
