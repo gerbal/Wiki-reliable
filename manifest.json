@@ -18,11 +18,14 @@
   "content_scripts": [
     {
       "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
-      "js": ["background.js"],
-      "css" : ["css/styles.css"]
+      "js": ["contentscript.js"],
+      "css" : ["css/styles.css", "bootstrap.css"],
+      "run_at": "document_idle",
+      "all_frames" : false
     }
   ],
-    "background": {
-    "scripts": ["background.js"]
-  }
+  "web_accessible_resources": ["bootstrap.css"],
+     "background": {
+     "scripts": ["contentscript.js"]
+   }
 }

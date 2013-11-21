@@ -1,10 +1,10 @@
 var generateScoreBox = {
-	currentTab: string(location.href),
 
-	getStatsPageURI_: function(tab){
-		// var tab = currentTab;
+
+	getStatsPageURI_: function(){
+		var currentTab= location.href;
 		var article = currentTab.slice(currentTab.lastIndexOf("/")+1, currentTab.length);
-		statsuri = "https://tools.wmflabs.org/xtools/articleinfo/index.php?article=" +  article + "&lang=en&wiki=wikipedia";
+		var statsuri = "https://tools.wmflabs.org/xtools/articleinfo/index.php?article=" +  article + "&lang=en&wiki=wikipedia";
 		console.log(statsuri);
 		return statsuri;
 	},
@@ -55,10 +55,11 @@ var generateScoreBox = {
 		var newrow = document.createElement('tr');
 		var th = document.createElement('th');
 		newrow.className= color;
-		table.className = "infobox vcard " + color;
+		table.className = color + " infobox vcard ";
 		table.style.width = "22em";
+		table.id= color;
 		th.colspan = "2";
-		th.className = "n " + color;
+		th.className = color +" n";
 		th.style.textAlign = "center";
 		th.style.fontSize = "125%";
 		th.innerText = score;
@@ -83,12 +84,18 @@ var generateScoreBox = {
 // 	    }
 // 	};
 
+function insertCSS() {
+	var css = document.createElement("link");
+	var bsurl= chrome.extension.getURL("bootstrap.css")
+	css.href =  bsurl;
+	css.rel= "stylesheet";
+	document.head.appendChild(css);
 
 
-//generateScoreBox.putbox(document, 10, "warning");
-generateScoreBox.getStatsPage_(generateScoreBox.getStatsPageURI_);
+	
+}
+insertCSS();
+
+generateScoreBox.putbox(document, "A very long string like this, made even longer, what happens", "success");
+generateScoreBox.getStatsPage_(generateScoreBox.getStatsPageURI_());
 //generateScoreBox.getStatsPageURI_();
-chrome.tabs.insertCSS(null, {
-	        file: "css/styles.css" 
-	    	}, 
-	    function(){console.log("css injected");});
