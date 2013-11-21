@@ -9,23 +9,24 @@
     "default_title": "Assessing the Reliability of this Wiki article"
   },
   "permissions": [
-    "https://secure.flickr.com/",
     "activeTab",
     "http://*.wikipedia.org/*",
     "https://*.wikipedia.org/*",
+    "https://tools.wmflabs.org/xtools/*",
     "tabs"
   ],
   "content_scripts": [
     {
       "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
-      "js": ["contentscript.js"],
+      "js": ["contentscript.js", "background.js"],
       "css" : ["css/styles.css", "bootstrap.css"],
       "run_at": "document_idle",
       "all_frames" : false
     }
   ],
+  "content_security_policy": "script-src 'self' ; object-src 'self'",
   "web_accessible_resources": ["bootstrap.css"],
-     "background": {
-     "scripts": ["contentscript.js"]
+  "background": {
+     "scripts": ["background.js"]
    }
 }

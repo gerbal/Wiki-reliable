@@ -84,6 +84,10 @@ var generateScoreBox = {
 // 	    }
 // 	};
 
+chrome.runtime.sendMessage({uri: generateScoreBox.getStatsPageURI_()}, function(response) {
+  console.log(response.table);
+});
+
 function insertCSS() {
 	var css = document.createElement("link");
 	var bsurl= chrome.extension.getURL("bootstrap.css")
@@ -97,5 +101,5 @@ function insertCSS() {
 insertCSS();
 
 generateScoreBox.putbox(document, "A very long string like this, made even longer, what happens", "success");
-generateScoreBox.getStatsPage_(generateScoreBox.getStatsPageURI_());
+//generateScoreBox.getStatsPage_(generateScoreBox.getStatsPageURI_());
 //generateScoreBox.getStatsPageURI_();
