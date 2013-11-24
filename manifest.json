@@ -19,7 +19,7 @@
     {
       "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
       "js": ["contentscript.js", "background.js"],
-      "css" : ["css/styles.css", "bootstrap.css"],
+      "css" : ["bootstrap.css"],
       "run_at": "document_idle",
       "all_frames" : false
     }
