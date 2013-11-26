@@ -1,32 +1,22 @@
 {
-  "manifest_version": 2,
-
-  "name": "Wiki-reliable",
-  "description": "This extension analyzes and displays reliability indexes for a given Wikipedia article to the user.",
-  "version": "1.0",
-
-  "page_action": {
-    "default_title": "Assessing the Reliability of this Wiki article"
-  },
-  "permissions": [
-    "activeTab",
-    "http://*.wikipedia.org/*",
-    "https://*.wikipedia.org/*",
-    "https://tools.wmflabs.org/xtools/*",
-    "tabs"
-  ],
-  "content_scripts": [
-    {
-      "matches": ["http://*.wikipedia.org/*","https://*.wikipedia.org/*"],
-      "js": ["contentscript.js", "background.js"],
-      "css" : ["bootstrap.css"],
-      "run_at": "document_idle",
-      "all_frames" : false
+    "manifest_version": 2,
+    "name": "Wiki-reliable",
+    "description": "This extension analyzes and displays reliability indexes for a given Wikipedia article to the user.",
+    "version": "1.0",
+    "page_action": {
+        "default_title": "Assessing the Reliability of this Wiki article"
+    },
+    "permissions": ["activeTab", "http://*.wikipedia.org/*", "https://*.wikipedia.org/*", "https://tools.wmflabs.org/xtools/*", "tabs"],
+    "content_scripts": [{
+        "matches": ["http://*.wikipedia.org/*", "https://*.wikipedia.org/*"],
+        "js": ["contentscript.js", "background.js"],
+        "css": ["bootstrap.css"],
+        "run_at": "document_idle",
+        "all_frames": false
+    }],
+    "content_security_policy": "script-src 'self' ; object-src 'self'",
+    "web_accessible_resources": ["bootstrap.css"],
+    "background": {
+        "scripts": ["background.js"]
     }
-  ],
-  "content_security_policy": "script-src 'self' ; object-src 'self'",
-  "web_accessible_resources": ["bootstrap.css"],
-  "background": {
-     "scripts": ["background.js"]
-   }
 }
