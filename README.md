@@ -9,8 +9,8 @@ The goal of the AuthetaWiki/Wiki-reliable project is to make evaluating the reli
   2. pulls any editing data  
     Pop-up displays any editing data pulled from the article statistics page  
   3. pull all relevant editing data  
-    Pulls all the data needed to compute a reliability score. Does not need to be displayed in pop-up except in debugging state.  
-2.Proof of concept  
+    Pulls all the data needed to compute a reliability score. Does not need to be displayed in pop-up except in debugging state.   
+2. Proof of concept  
   1. formats data  
     Formats and displays data pulled from the article statistics page in a way usable by other APIs or by our own index calculator  
   2. calculates an index  
