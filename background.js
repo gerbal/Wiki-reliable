@@ -1,25 +1,4 @@
 var logging = true; //enables logging in the broswers JS console.
-var table = Object;
-chrome.runtime.onConnect.addListener(function (port) {
-    //listens for a message from the content.js script
-    console.assert(port.name == "uriexchange");
-    if (logging) {
-        console.log("connected: " + port.name);
-    }
-    port.onMessage.addListener(function (msg) { // listens for the URI to get passes
-        var table = generateScoreBox.getStatsPage_(msg.uri);
-        if (logging) {
-            console.log("uri: " + msg.uri);
-        }
-        port.postMessage({
-            table: score
-        }); //sends back a score.
-    });
-});
-if (logging) {
-    console.log("table: " + table);
-}
-var score = generateScoreBox.extractStats_(table); //broken. I don't understand why.
 var generateScoreBox = {
     //big dictionary object full of methods, one of many ways to do things in javascript.
     getStatsPage_: function (statsuri) {
@@ -43,6 +22,28 @@ var generateScoreBox = {
     },
     extractStats_: function (e) {
         // I throw an error, no one knows why.
-        return e;
+        return 1;
     }
 };
+
+var table = Object;
+chrome.runtime.onConnect.addListener(function (port) {
+    //listens for a message from the content.js script
+    console.assert(port.name == "uriexchange");
+    if (logging) {
+        console.log("connected: " + port.name);
+    }
+    port.onMessage.addListener(function (msg) { // listens for the URI to get passes
+        var table = generateScoreBox.getStatsPage_(msg.uri);
+        if (logging) {
+            console.log("uri: " + msg.uri);
+        }
+        port.postMessage({
+            table: score
+        }); //sends back a score.
+    });
+});
+if (logging) {
+    console.log("table: " + table);
+}
+var score = generateScoreBox.extractStats_(table); 

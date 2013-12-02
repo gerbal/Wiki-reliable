@@ -75,8 +75,11 @@ function putbox(document, score, color) {
 //         });
 //     }
 // }; 
+
+
 // this is our mainloop, of a sort. It's quite poorly structured.
 var xml = Object;
+
 var port = chrome.runtime.connect({
     name: "uriexchange"
 }); //We're opening a connection to the background
