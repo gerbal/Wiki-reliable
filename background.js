@@ -26,7 +26,7 @@ var generateScoreBox = {
             }
         xhr.responseType = "document";
         xhr.timeout = 4000;
-        xhr.ontimeout = function () { console.log("Timed out!!!"); }
+        xhr.ontimeout = function () { console.log("Connection to timed out to" + statsuri); }
         xhr.send();
         //return xml; //returns an object, not sure what to do with it.
     },
