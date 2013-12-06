@@ -44,6 +44,6 @@ chrome.runtime.onConnect.addListener(function (port) {
     });
 });
 if (logging) {
-    console.log("table: " + table);
+    console.log("table: " + table.score);
 }
 var score = generateScoreBox.extractStats_(table); 
