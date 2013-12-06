@@ -3,10 +3,15 @@ var generateScoreBox = {
     //big dictionary object full of methods, one of many ways to do things in javascript.
     getStatsPage_: function (statsuri) {
         //Hand the URI from the content.js, pulls it down, does some basic parsing. 
-        var xml = Object;
+        var xml;
         var xhr = new XMLHttpRequest();
-        xhr.onload = function () {
-            var xml = this.responseXML;
+        xhr.open("GET", statsuri, true);
+        xhr.onreadystatechange = function () {
+            if (logging) {
+                console.log("entering xhr.onreadystatechange");
+            }
+            if (xhr.readyState == 4) {
+            xml = xhr.responseXML;
             if (logging) {
                 console.log("xml: " + xml);
             }
@@ -15,18 +20,23 @@ var generateScoreBox = {
                 console.log("xml: " + xml);
             }
         }
-        xhr.open("GET", statsuri);
+        }
+        if (logging) {
+                console.log("xml(2): " + xml);
+            }
         xhr.responseType = "document";
+        xhr.timeout = 4000;
+        xhr.ontimeout = function () { console.log("Timed out!!!"); }
         xhr.send();
-        return xml; //returns an object, not sure what to do with it.
+        //return xml; //returns an object, not sure what to do with it.
     },
     extractStats_: function (e) {
         // I throw an error, no one knows why.
-        return 1;
+        return "apple";
     }
 };
 
-var table = Object;
+var table;
 chrome.runtime.onConnect.addListener(function (port) {
     //listens for a message from the content.js script
     console.assert(port.name == "uriexchange");
@@ -34,16 +44,17 @@ chrome.runtime.onConnect.addListener(function (port) {
         console.log("connected: " + port.name);
     }
     port.onMessage.addListener(function (msg) { // listens for the URI to get passes
-        var table = generateScoreBox.getStatsPage_(msg.uri);
+        table = generateScoreBox.getStatsPage_(msg.uri);
         if (logging) {
             console.log("uri: " + msg.uri);
+        }
+        var score = generateScoreBox.extractStats_(table); 
+        if (logging) {
+            console.log("table: " + table);
+            console.log("score: " + score);
         }
         port.postMessage({
             table: score
         }); //sends back a score.
     });
 });
-if (logging) {
-    console.log("table: " + table.score);
-}
-var score = generateScoreBox.extractStats_(table); 
