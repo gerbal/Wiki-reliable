@@ -39,7 +39,11 @@ function putbox(document, score, color) {
 }
 
 // this is our mainloop, we need to refactor for better structure
-var xml;
+if (!document.getElementById("ca-nstab-main")){
+    console.log("nothing to do");
+}
+else{
+
 
 //We're opening a connection to background.js
 var port = chrome.runtime.connect({
@@ -72,3 +76,4 @@ function insertCSS() {
 }
 insertCSS();
 
+}
