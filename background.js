@@ -13,20 +13,20 @@ var generateScoreBox = {
             if (xhr.readyState == 4) {
             xml = xhr.responseXML;
             if (logging) {
-                console.log("xml: " + xml);
+                console.log("from responseXML xml: " + xml);
             }
             xml = xml.getElementById('generalstats'); //works
             if (logging) {
-                console.log("xml: " + xml);
+                console.log("div xml: " + xml);
             }
         }
         }
         if (logging) {
-                console.log("xml(2): " + xml);
+                console.log("Check to see if onreadystatechange happened correctly xml: " + xml);
             }
         xhr.responseType = "document";
         xhr.timeout = 4000;
-        xhr.ontimeout = function () { console.log("Timed out!!!"); }
+        xhr.ontimeout = function () { console.log("Connection to timed out to" + statsuri); }
         xhr.send();
         //return xml; //returns an object, not sure what to do with it.
     },
