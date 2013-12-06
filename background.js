@@ -32,7 +32,7 @@ var generateScoreBox = {
     },
     extractStats_: function (e) {
         // I throw an error, no one knows why.
-        return "apple";
+        return e;
     }
 };
 

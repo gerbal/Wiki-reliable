@@ -2,9 +2,9 @@ var logging = true; //enables logging in the broswers JS console.
 
 function getStatsPageURI_() {
     //gets the URI of the current page, turns it into the stats page URL returns it
-    var currentTab = location.href;
-    var article = currentTab.slice(currentTab.lastIndexOf("/") + 1, currentTab.length);
-    var lang = currentTab.slice(); //we need to get the language and drop it in the "&lang". Until then this is empty
+    var url = document.querySelectorAll('[rel="canonical"]')[0].getAttribute('href');
+    var article = url.slice(url.lastIndexOf("/") + 1, url.length);
+    var lang = url.slice(); //we need to get the language and drop it in the "&lang". Until then this is empty
     var statsuri = "https://tools.wmflabs.org/xtools/articleinfo/index.php?article=" + article + "&lang=en&wiki=wikipedia";
     if (logging) {
         console.log("statsuri: "+statsuri);
@@ -40,6 +40,7 @@ function putbox(document, score, color) {
 
 // this is our mainloop, we need to refactor for better structure
 if (!document.getElementById("ca-nstab-main") || (document.getElementsByClassName("action-view").length==0) || (document.getElementsByClassName("ns-subject").length==0)){
+    //We're checking to see if we are on a wikipedia article page. 
     console.log("nothing to do");
 }
 else{
