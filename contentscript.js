@@ -39,11 +39,11 @@ function putbox(document, score, color) {
 }
 
 // this is our mainloop, we need to refactor for better structure
-if (!document.getElementById("ca-nstab-main")){
+if (!document.getElementById("ca-nstab-main") || (document.getElementsByClassName("action-view").length==0) || (document.getElementsByClassName("ns-subject").length==0)){
     console.log("nothing to do");
 }
 else{
-
+console.log(document.getElementsByClassName("action-view"));
 
 //We're opening a connection to background.js
 var port = chrome.runtime.connect({
