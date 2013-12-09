@@ -32,7 +32,7 @@ function putbox(document, score, color) {
     th.className = color + " n";
     th.style.textAlign = "center";
     th.style.fontSize = "125%";
-    th.innerText = score;
+    th.appendChild(score.firstChild);
     newrow.appendChild(th);
     table.appendChild(newrow);
     box.insertBefore(table, box.firstChild);
@@ -59,12 +59,14 @@ console.log("port name: " + port.name);
 }
 port.onMessage.addListener(function (msg) { //wait for background.js to hand us back a score (or something)
     xml = msg.table;
+    var html =new DOMParser().parseFromString(xml, "text/html");
     if (logging) {
         console.log("msg: " + msg);
         console.log("msg.table: " + msg.table);
         console.log("xml: " +xml);
+        console.log("html:"+html);
     }
-    putbox(document, xml, "success");
+    putbox(document, html, "success");
 });
 
 function insertCSS() {
