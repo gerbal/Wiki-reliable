@@ -34,9 +34,20 @@ var generateScoreBox = {
         xhr.send();
     },
     extractStats_: function (e) {
-        var tables = e.childNodes[1];
-        if(logging){console.log(tables)}
-        return nodeToString(tables);
+        var table = e.getElementsByTagName('td');
+        if(logging){
+            console.log(table);
+            console.log(table.childNodes);
+            console.log(table.constructor.name);
+        }
+        var str = "";
+        for (var index = 0; index < table.length; index++) {
+            str = str + table[index].outerText +"<br />";
+        }
+
+        //return nodeToString(table);
+        return String(str);
+
     }
 };
 function nodeToString ( node ) {
@@ -46,7 +57,9 @@ function nodeToString ( node ) {
    tmpNode = node = null; // prevent memory leaks in IE
    return str;
 }
-
+function outerHTML(node){
+    return node.outerHTML || new XMLSerializer().serializeToString(node);
+}
 chrome.runtime.onConnect.addListener(function (port) {
     //listens for a message from the content.js script
     console.assert(port.name == "uriexchange");
@@ -59,7 +72,7 @@ chrome.runtime.onConnect.addListener(function (port) {
             console.log("uri: " + msg.uri);
         }
         if (logging) {
-            console.log("table: " + table);
+            console.log("table: ");
         }
         port.postMessage({
             table: table
