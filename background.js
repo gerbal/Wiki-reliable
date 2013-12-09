@@ -22,23 +22,30 @@ var generateScoreBox = {
             if (logging) {
                 console.log("div generalstats: " + generalstats);
             }
-            callback(String(generalstats));
+            var stats = generateScoreBox.extractStats_(generalstats);
+            callback(stats);
+            
         }
         }
         if (logging) {
                 console.log("Check to see if onload happened correctly xml: " );
             }
-        //xhr.responseType = "document";
-        //xhr.timeout = 4000;
         xhr.ontimeout = function () { console.log("Connection to timed out to" + statsuri); }
         xhr.send();
-        //return xml; //returns an object, not sure what to do with it.
     },
     extractStats_: function (e) {
-        // I throw an error, no one knows why.
-        return e;
+        var tables = e.childNodes[1];
+        if(logging){console.log(tables)}
+        return nodeToString(tables);
     }
 };
+function nodeToString ( node ) {
+   var tmpNode = document.createElement( "div" );
+   tmpNode.appendChild( node.cloneNode( true ) );
+   var str = tmpNode.innerHTML;
+   tmpNode = node = null; // prevent memory leaks in IE
+   return str;
+}
 
 chrome.runtime.onConnect.addListener(function (port) {
     //listens for a message from the content.js script
@@ -51,10 +58,8 @@ chrome.runtime.onConnect.addListener(function (port) {
         if (logging) {
             console.log("uri: " + msg.uri);
         }
-        var score = generateScoreBox.extractStats_(table); 
         if (logging) {
             console.log("table: " + table);
-            console.log("score: " + score);
         }
         port.postMessage({
             table: table
