@@ -5,7 +5,14 @@ function getStatsPageURI_() {
     var url = document.querySelectorAll('[rel="canonical"]')[0].getAttribute('href');
     var article = url.slice(url.lastIndexOf("/") + 1, url.length);
     var lang = url.slice(); //we need to get the language and drop it in the "&lang". Until then this is empty
-    var statsuri = "https://tools.wmflabs.org/xtools/articleinfo/index.php?article=" + article + "&lang=en&wiki=wikipedia";
+    var hrefe = document.createElement("a");
+    hrefe.href = url;
+    var host = hrefe.hostname;
+    var lang = host.substr(0, host.indexOf('.'));
+    console.log(lang);
+    console.log(lang.constructor.name);
+
+    var statsuri = "https://tools.wmflabs.org/xtools/articleinfo/index.php?article=" + article + "&lang="+ lang +"&wiki=wikipedia";
     if (logging) {
         console.log("statsuri: "+statsuri);
     }  
