@@ -63,8 +63,8 @@ port.onMessage.addListener(function (msg) { //wait for background.js to hand us 
     if (logging) {
         console.log("msg: " + msg);
         console.log("msg.table: " + msg.table);
-        console.log("xml: " +xml);
-        console.log("html:"+html);
+        //console.log("xml: " +xml);
+        //console.log("html:"+html);
     }
     putbox(document, html, "success");
 });
