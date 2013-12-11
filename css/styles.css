@@ -1,0 +1,78 @@
+.text-orange {
+  color: #c09853;
+}
+.text-orange:hover {
+  color: #a47e3c;
+}
+.text-red {
+  color: #b94a48;
+}
+.text-red:hover {
+  color: #953b39;
+}
+.text-green {
+  color: #468847;
+}
+.text-green:hover {
+  color: #356635;
+  table th[class*="col-"] {
+  float: none;
+  display: table-cell;
+}
+table {
+  max-width: 100%;
+  background-color: transparent;
+}
+th {}
+table col[class*="col-"] {
+  float: none;
+  display: table-column;
+}
+table td[class*="col-"],
+table th[class*="col-"] {
+  float: none;
+  display: table-cell;
+}
+.table > tbody > tr > td.active,
+.table > tbody > tr > th.active,
+.table > tbody > tr.active > td,
+.table > tbody > tr.active > th,{
+  background-color: #f5f5f5;
+}
+.
+.table > tbody > tr > td.green,
+.table > tbody > tr > th.green,
+.table > tbody > tr.green > td,
+.table > tbody > tr.green > th,{
+  background-color: #dff0d8;
+}
+.table > thead > tr > td.red,
+.table > tbody > tr > td.red,
+.table > tfoot > tr > td.red,
+.table > thead > tr > th.red,
+.table > tbody > tr > th.red,
+.table > tfoot > tr > th.red,
+.table > thead > tr.red > td,
+.table > tbody > tr.red > td,
+.table > tfoot > tr.red > td,
+.table > thead > tr.red > th,
+.table > tbody > tr.red > th,
+.table > tfoot > tr.red > th {
+  background-color: #f2dede;
+}
+!th.orange {
+  background-color: #f2dede;
+}
+.table-hover > tbody > tr > td.red:hover,
+.table-hover > tbody > tr > th.red:hover,
+.table-hover > tbody > tr.red:hover > td,
+.table-hover > tbody > tr.red:hover > th {
+  background-color: #ebcccc;
+}
+.table > thead > tr > td.orange,
+.table > thead > tr > th.orange,
+.table > tbody > tr > th.orange,
+.table > tbody > tr.orange > td,
+.table > tbody > tr.orange > th {
+  background-color: #fcf8e3;
+}
